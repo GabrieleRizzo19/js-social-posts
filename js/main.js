@@ -60,6 +60,7 @@ const container = document.getElementById("container");
 
 posts.forEach((element) => {
 
+    element.created = element.created.split("-").reverse().join("-");
     container.innerHTML += `
     <div class="post">
         <div class="post__header">
