@@ -95,7 +95,7 @@ posts.forEach((element) => {
 });
 
 const likeButtons = document.querySelectorAll(".like-button");
-console.log(likeButtons);
+// console.log(likeButtons);
 let likedPosts = [];
 
 likeButtons.forEach((element) =>{
@@ -103,15 +103,22 @@ likeButtons.forEach((element) =>{
         this.classList.toggle("like-button--liked");
         const id = this.getAttribute("data-postid");
         if(!likedPosts.includes(id)){
-            posts[id-1].likes++;
-            document.getElementById(`like-counter-${id}`).innerText = posts[id-1].likes;
-            likedPosts.push(id);
+            like(id);
         }else{
-            posts[id-1].likes--;
-            document.getElementById(`like-counter-${id}`).innerText = posts[id-1].likes;
-            likedPosts = likedPosts.filter((element) => element != id);
+            unlike(id);
         }
     });
 })
 
+function like(id){
+    posts[id-1].likes++;
+    document.getElementById(`like-counter-${id}`).innerText = posts[id-1].likes;
+    likedPosts.push(id);
+}
+
+function unlike(id){
+    posts[id-1].likes--;
+    document.getElementById(`like-counter-${id}`).innerText = posts[id-1].likes;
+    likedPosts = likedPosts.filter((element) => element != id);
+}
 
